@@ -1,6 +1,6 @@
-#Functional Programming
+# Functional Programming
 
-##Introduction - Functions as values
+## Introduction - Functions as values
 There are several ways we can write functions in JavaScript. Previously we have created functions using a function *declaration*. Here's an example:
 
 ```javascript
@@ -10,7 +10,7 @@ function alertMsg(){
 alertMsg() //outputs 'Well done you've passed'
 ```
 
-This isn't the only way we can write a function. This is the same function, this time written as a function *expression*. The function is assigned to a variable. We call this a function literal. Note, we call the function in exactly the same way.
+This isn't the only way we can write a function. This is the same function, this time written as a function *expression*. The function is assigned to a variable. We also call this a function *literal*. Note, we call the function in exactly the same way.
 
 ```javascript
 var alertMsg=function()
@@ -20,11 +20,11 @@ var alertMsg=function()
 alertMsg() //outputs 'Well done you've passed'
 ```
 
-Being able to use functions as values allows us to do some interesting and useful things with functions. The two main ideas are
+Being able to use functions as values allows us to do some interesting and useful things with functions. The two main ideas are:
 * Passing functions as arguments
 * Returning functions
 
-##Passing functions as arguments
+## Passing functions as arguments
 Have a look at the following example. *alertMsg* is a function literal. it is passed as an argument to the function *hasPassed*.
 
 ```javascript
@@ -43,7 +43,7 @@ alertMsg=function()
 }
 
 
-hasPassed(alertMsg,40)
+hasPassed(alertMsg,40) //outputs 'Well done you've passed'
 
 ```
 
@@ -64,10 +64,11 @@ changeColour=function(){
 }
 
 
-hasPassed(changeColour,40)
+hasPassed(changeColour,40) //changes the background colour of the page to red
 
 ```
-###Anonymous Functions
+
+### Anonymous functions
 Often we don't even bother to assign a function literal to a variable, instead we can create an anonymous function. Have a look at this example:
 
 ```javascript
@@ -87,10 +88,10 @@ hasPassed(function(){
 ```
 The first argument passed to *hasPassed* is still a function. However, it has no name and hasn't been assigned to a variable. Although they can affect the readablity of our code, anonymous functions are commonly used, so you should try to get use to the syntax.
 
-##Passing functions as arguments to array methods
-One common use for this functional style of programming in JavaScript is data manipulation. Data is often structured as an array of objects. Often we will want to iterate (loop) over an array and do something with the data e.g. combine it, create DOM elements from it, filter it, search it, sort it etc. Doing this is in a functional way often results in cleaner, neat code that is easier to modify and re-use. 
+## Passing functions as arguments to array methods
+One common use for this functional style of programming in JavaScript is data manipulation. Data is often structured as an array of objects. Often we will want to iterate (loop) over an array and do something with the data e.g. combine it, create DOM elements from it, filter it, search it, sort it etc. Doing this is in a functional way often results in cleaner, neater code that is easier to modify and re-use. 
 
-###The Array.forEach() method
+### The Array.forEach() method
 Currently, to loop over an array of objects we would use code like this:
 
 ```javascript
@@ -148,24 +149,21 @@ students.forEach(function(student){
 
 ```
 
-###The Array.map() method
-Arrays also have a *map* method. Like *forEach* it calls a function once for each element in the array. The difference is that it creates a new array that consists of the results from each of the function calls. Here's an example:
+### The Array.map() method
+Arrays also have a *map* method. Like *forEach* it calls a function once for each element in the array. The difference is that it creates a new array built from the results from each of the function calls. Here's an example:
 
 ```javascript
 
-var doubleNum=function(num)
-{
-    return num*2;
-}
-
 var numbers=[3,6,8,9];
-var newNumbers=numbers.map(doubleNum);
+var newNumbers=numbers.map(function(num){
+    return num*2;
+});
 
 console.log(newNumbers); // [6,12,16,19]
 
 ```
 
-*Map* is often used when we want to create a new data structure from a source data structure. For example, if we were only interested in student marks and we didn't care which student had scored the mark. We could use *map* to generate an array that only consists of the student scores. 
+*map* is often used when we want to create a new data structure from a source data structure. For example, if we were only interested in student marks and we didn't care which student had scored the mark. We could use *map* to generate an array that only features the student scores. 
 
 ```javascript
 
@@ -174,32 +172,29 @@ students.push({name:"Jane",course:"ICT", mark:67});
 students.push({name:"Imran",course:"BACB", mark:42});
 students.push({name:"Zofia",course:"BAIM", mark:72});
 
-var getMark=function(student){
+var marks=students.map(function(student){
     return student.mark;
-}
-var marks=students.map(getMark)
+})
 console.log(marks);//67,42,72
 
 ```
-###The Array.filter() method
-The *filter* method also creates a new array. The array consists of elements that pass a test. We write the test as a function that we pass to the *filter* method. 
+
+### The Array.filter() method
+The *filter* method also creates a new array. The array is built from elements of another array that pass a test. We write the test as a function that we pass to the *filter* method. 
 
 ```javascript
 var words=["Hello","world","JavaScript","HTML","CSS","Huddersfield"];
 
-var onlyLongWords=function(word){
-    if(word.length<7)
-    {
+var longWords=words.filter(function(word){
+    if(word.length<7){
         return false;
     }
     return true;
-}
-
-var longWords=words.filter(onlyLongWords);
+});
 console.log(longWords); //["JavaScript", "Huddersfield"]
 ```
 
-Using the students example I could get a list of all the students that have passed. This example uses an anonymous function.
+Using the students example I could get a list of all the students that have passed.
 
 ```javascript
 var students=[];
@@ -209,10 +204,8 @@ students.push({name:"Zofia",course:"BAIM", mark:72});
 students.push({name:"Bill",course:"BAIM", mark:39});
 
 var hasPassed=
-var passingStudents=students.filter(function(student)
-{
-    if(student.mark<40)
-    {
+var passingStudents=students.filter(function(student){
+    if(student.mark<40){
         return false;
     }
     return true;
@@ -220,17 +213,15 @@ var passingStudents=students.filter(function(student)
 console.log(passingStudents); //Array of Jane, Imran and Zofia (no Bill)
 
 ```
-###The Array.reduce() method
+### The Array.reduce() method
 The *reduce* method performs aggregation, it produces a single value from an array. The following example is pointless (there is a join method that does this for us) but it is an easy example to understand.
 
 ```javascript
 var words=["Hello","world","JavaScript","HTML","CSS","Huddersfield"];
 
-var joinWords=function(previous,current){
+var msg=words.reduce(function(previous,current){
     return previous+","+current;
-}
-
-var msg=words.reduce(joinWords)
+})
 
 console.log(msg); //Hello,world,JavaScript,HTML,CSS,Huddersfield
 ```
@@ -241,26 +232,25 @@ The return value from the function becomes the previous value for the next funct
 * We continue like this for all array elements and return a final single value, 'Hello,world,JavaScript,HTML,CSS,Huddersfield'.
 
 Here's another example of *reduce*. This example finds the highest scoring student.
+
 ```javascript
 
-var highestMark=function(a,b){
-    if(b.mark>a.mark)
-    {
+var topStudent=students.reduce(function(a,b){
+    if(b.mark>a.mark){
         return b;
     }
     return a;
-}
-var topStudent=students.reduce(highestMark)
+})
 console.log(topStudent.name+" has the highest mark."); // Zofia has the highest mark.
 
 ```
-##Why bother?
+## Why bother?
 There are a number reasons for learning functional programming and getting your head around the idea of passing functions as arguments. 
 
-###Functional programming techniques are widely used
+### Functional programming techniques are widely used
 Many libraries and frameworks make extensive use of function literals and passing functions as arguments. In this example an anonymous function is passed to the jQuery click() method. 
 ```javascript 
-$( ".btn" ).click(function( event ) {
+$(".btn").click(function( event ) {
       //do stuff when button is clicked  
 });
 ```
@@ -276,7 +266,8 @@ var filmNodes = this.props.data.map(function (film) {
       );
     });
 ```
-###It makes your code more maintainable
+
+### It makes your code more maintainable
 Look at the following example. It loops over an array of students objects and tells us which BAIM student got the highest mark. It is written in the familiar, *imperative* style. 
 ```javascript
 var students=[];
@@ -306,6 +297,7 @@ for(var i=0;i < students.length;i++)
 }
 console.log(topBAIMStudent.name+" has the highest mark."); 
 ```
+
 Now here's the same example but using a more functional style
 
 ```javascript
@@ -336,7 +328,7 @@ The more functional style has a number of advantages
 * Once you get used to it, functional programming code is often easier to read, no nested if statements inside for loops. 
 * Functional code is easier to test. Each function is independent.
 
-##Returning Functions
+## Returning Functions
 Alongside passing functions as arguments, the other key functional programmign technique is returning functions. Here's an example.
 
 ```javascript
@@ -355,7 +347,7 @@ shouty(); //HELLO!
 ```
 This probably seems fairly pointless. The really great thing about returning functions is when we use closures.
 
-##Closures
+## Closures
 A closure takes place when a function is able to access a specific instance of a local variable. In this example that variable is *msg*.
 
 ```javascript
@@ -375,7 +367,7 @@ shouty(); //HELLO!
 
 Each time *getShoutyFnc* is called, the variable *msg* is assigned a different value, first 'hello' and then 'Ay up'. Importantly, each time we call *getShoutyFnc* a new instance of the variable *msg* is created i.e. we don't replace an existing value. The returned function has access to the specific instance of the variable *msg*. This is'hello' for *shouty* and 'Ay up' for *anotherShouty*. Here's a really common use case for closures.
 
-###Closures - Associating data with dynamically generated elements
+### Closures - Associating data with dynamically generated elements
 In a front-end web applications, there is often a requirement to dynamically generate HTML elements from an array of data. Here's an example.
 
 ```javascript
@@ -469,7 +461,7 @@ students.forEach(function(student){
 });
 ```
 
-##Further Reading / References
+## Further Reading / References
 * Eloquent JavaScript - Higher Order Functions http://eloquentjavascript.net/05_higher_order.html
 * Smashing Magazine - http://www.smashingmagazine.com/2014/07/dont-be-scared-of-functional-programming/
 * MDN is a good reference for array functions e.g. map https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map 
