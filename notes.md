@@ -6,7 +6,7 @@ There are several ways we can write functions in JavaScript. Previously we have 
 ```javascript
 function alertMsg(msg)
 {
-	alert(msg)
+  alert(msg)
 }
 alertMsg("Hello"); //Outputs 'Hello' in an alert box
 ```
@@ -16,7 +16,7 @@ This isn't the only way we can write a function. This is the same function, this
 ```javascript
 const alertMsg=function(msg)
 {
-	alert(msg)
+  alert(msg)
 }
 alertMsg("Hello"); //Outputs 'Hello' in an alert box
 ```
@@ -32,13 +32,13 @@ Have a look at the following example. *alertMsg* is a function literal. It is pa
 
 function shoutMsg(msg,callback)
 {
-    const upperCaseMsg = msg.toUpperCase();
-		callback(upperCaseMsg);
+  const upperCaseMsg = msg.toUpperCase();
+  callback(upperCaseMsg);
 }
 
 const alertMsg=function(msg)
 {
-	alert(msg)
+  alert(msg)
 }
 
 shoutMsg("Hello",alertMsg); //outputs 'HELLO' in an alert box
@@ -52,17 +52,17 @@ This can make our code more flexible. For example, if I wanted to perform a diff
 
 function shoutMsg(msg,callback)
 {
-    const upperCaseMsg = msg.toUpperCase();
-		callback(upperCaseMsg);
+  const upperCaseMsg = msg.toUpperCase();
+  callback(upperCaseMsg);
 }
 
 const alertMsg=function(msg)
 {
-	alert(msg)
+  alert(msg)
 }
 const consoleMsg=function(msg)
 {
-	console.log(msg)
+  console.log(msg)
 }
 
 shoutMsg("Hello",alertMsg); //outputs 'HELLO' in an alert box
@@ -80,16 +80,16 @@ Often we don't even bother to assign a function literal to a variable, instead w
 
 function shoutMsg(msg,callback)
 {
-    const upperCaseMsg = msg.toUpperCase();
-		callback(upperCaseMsg);
+  const upperCaseMsg = msg.toUpperCase();
+  callback(upperCaseMsg);
 }
 
 shoutMsg("Welcome",function(msg){
-	alert(msg)
+ alert(msg)
 }); //outputs 'WELCOME' in an alert box
 
 shoutMsg("Hello",function(msg){
-	console.log(msg)
+ console.log(msg)
 }); //outputs 'HELLO' in the console
 
 ```
@@ -112,14 +112,14 @@ const countries=[
     {name : "USA", capital : "Washington", continent : "N. America", population: 325000000}
 ];
 countries.forEach(function(country){
-  console.log(`${country.name}`);
+ console.log(`${country.name}`);
 })
 ```
 The function:
 
 ```javascript
 function(country){
-  console.log(`${country.name}`);
+ console.log(`${country.name}`);
 }
 ```
 Is applied to each element of the array in turn. We could use a named function literal instead e.g.
@@ -159,9 +159,9 @@ console.log(continents); //(3) ["Europe", "Europe", "N. America"]
 The *reduce* method performs aggregation, it produces a single value from an array. The following example is pointless (there is a join method that does this for us) but it is an easy example to understand.
 
 ```javascript
-var words=["Hello","world","JavaScript","HTML","CSS","Huddersfield"];
+const words=["Hello","world","JavaScript","HTML","CSS","Huddersfield"];
 
-var msg=words.reduce(function(previous,current){
+const msg=words.reduce(function(previous,current){
     return previous+","+current;
 })
 
@@ -220,10 +220,10 @@ Alongside passing functions as arguments, the other key functional programming t
 
 function getWelcomeFnc()
 {
-    return function()
-    {
-        console.log("Hello")
-    }
+  return function()
+  {
+    console.log("Hello")
+  }
 }
 
 const welcomeFnc=getWelcomeFnc();
@@ -238,10 +238,10 @@ A closure takes place when a function is able to access a specific instance of a
 ```javascript
 function getWelcomeFnc(name)
 {
-    return function()
-    {
-        console.log("Hello "+name);
-    }
+  return function()
+  {
+    console.log("Hello "+name);
+  }
 }
 
 const welcomeMatthew = getWelcomeFnc("Matthew");
@@ -265,7 +265,7 @@ const students=[
 
 function showMsg()
 {
-    console.log("You clicked on a student")
+  console.log("You clicked on a student")
 }
 
 const studentsFragment = document.createDocumentFragment(); //create a fragment
@@ -296,9 +296,9 @@ const students=[
 ]
 
 function getShowMsgFnc(student){
-    return function(){
-        console.log(student.name+" has a mark of "+student.mark); //this works
-    }
+  return function(){
+		console.log(student.name+" has a mark of "+student.mark); //this works
+	}
 }
 
 const studentsFragment = document.createDocumentFragment(); //create a fragment
