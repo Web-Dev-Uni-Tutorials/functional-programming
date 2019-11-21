@@ -80,11 +80,13 @@ d) Call the function again but this time pass printInDOM as an argument
 4. This question is about returning functions and closures. Look at the following code
 */
 
+/*
 const doubleIt=getMultiplyFunction(2);
 const tripleIt=getMultiplyFunction(3);
 doubleIt(10); // Outputs 2 x 10 = 20
 tripleIt(10); // Outputs 3 x 10 = 30
 doubleIt(2); // Outputs 2 x 2 = 4
+*/
 
 /*
 4. Write the getMultiplyFunction. getMultiplyFunction will accept a single argument, a number (the multiplier), it should return a function. This returned function should also accept a single argument (also a number) and then multiply the two numbers and display the result in the console.
