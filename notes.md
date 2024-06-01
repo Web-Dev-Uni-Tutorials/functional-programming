@@ -27,7 +27,7 @@ Being able to use functions stored in variables allows us to do some interesting
 
 ## Passing functions as arguments (callbacks)
 
-Have a look at the following example. `alertMsg` is a function literal. It is passed as an argument to the function `shoutMsg`.
+Have a look at the following example. `alertMsg` is a function literal. It is passed as an argument to the function `shoutMsg()`.
 
 ```javascript
 function shoutMsg(msg, callback) {
@@ -63,7 +63,7 @@ shoutMsg("Welcome", alertMsg); //outputs 'WELCOME' in an alert box
 shoutMsg("Hello", consoleMsg); //outputs 'HELLO' in the console
 ```
 
-A function that accepts another function as an argument (in this case `shoutMsg`) is known as a **higher order function**.
+A function that accepts another function as an argument (in this case `shoutMsg()`) is known as a **higher order function**.
 
 ### Anonymous functions
 
@@ -84,7 +84,7 @@ shoutMsg("Hello", function (msg) {
 }); //outputs 'HELLO' in the console
 ```
 
-The second argument passed to `shoutMsg` is still a function. However, it has no name and hasn't been assigned to a variable. Although they can affect the readablity of our code, anonymous functions are commonly used, so you should try to get use to the syntax.
+The second argument passed to `shoutMsg()` is still a function. However, it has no name and hasn't been assigned to a variable. Although they can affect the readablity of our code, anonymous functions are commonly used, so you should try to get use to the syntax.
 
 ## We have seen this previously
 
@@ -96,7 +96,7 @@ One common use for this functional style of programming in JavaScript is data ma
 
 ### The Array.forEach() method
 
-We have used `forEach` to iterate over an array of objects. Here's an example:
+We have used `forEach()` to iterate over an array of objects. Here's an example:
 
 ```javascript
 const countries = [
@@ -165,7 +165,7 @@ countries.forEach(displayName);
 
 ### The Array.map() method
 
-Arrays also have a `map` method. Like `forEach` it calls a function once for each element in the array. The difference is that it creates a new array built from the results from each of the function calls. `map` is often used when we want to create a new data structure from a source data structure. For example, if we were only interested in continents and not countries we could build a new array of continents. Here's an example:
+Arrays also have a `map()` method. Like `forEach()` it calls a function once for each element in the array. The difference is that it creates a new array built from the results from each of the function calls. `map()` is often used when we want to create a new data structure from a source data structure. For example, if we were only interested in continents and not countries we could build a new array of continents. Here's an example:
 
 ```javascript
 const countries = [
@@ -197,7 +197,7 @@ console.log(continents); //(3) ["Europe", "Europe", "N. America"]
 
 ### The Array.reduce() method
 
-The `reduce` method performs aggregation, it produces a single value from an array. The following example is pointless (there is a join method that does this for us) but it is an easy example to understand.
+The `reduce()` method performs aggregation, it produces a single value from an array. The following example is pointless (there is a join method that does this for us) but it is an easy example to understand.
 
 ```javascript
 const words = ["Hello", "world", "JavaScript", "HTML", "CSS", "Huddersfield"];
@@ -215,7 +215,7 @@ The return value from the function becomes the previous value for the next funct
 - In the second function call, `previous` has a value of `'Hello,world'` and `current` a value of `'JavaScript'`. The returned value is `'Hello,world,JavaScript'`.
 - We continue like this for all array elements and return a final single value, `'Hello,world,JavaScript,HTML,CSS,Huddersfield'`.
 
-Here's another example of `reduce`. This example finds the country with the highest population.
+Here's another example of `reduce()`. This example finds the country with the highest population.
 
 ```javascript
 const countries = [
@@ -262,7 +262,7 @@ $(".btn").click(function (event) {
 });
 ```
 
-Here's some react code (react is a popular js view library). See how the `map` method is used to convert array data and how an anonymous function is used.
+Here's some react code (react is a popular js view library). See how the `map()` method is used to convert array data and how an anonymous function is used.
 
 ```javascript
 let filmNodes = this.props.data.map(function (film) {
@@ -304,7 +304,7 @@ welcomeMatthew(); //Hello Matthew
 welcomeFred(); //Hello Fred
 ```
 
-Each time the `getWelcomeFnc` is called the variable `name` is assigned a different value, first `'Matthew'` and then `'Fred'`. Importantly, each time we call `getWelcomeFnc` a new instance of the variable `name` is created i.e. we don't replace an existing value. The returned function has access to a specific instance of the variable `name`. This is `'Matthew'` for `welcome Matthew` and '`Fred'` for `welcome Fred`. Here's a really common use case for closures.
+Each time the `getWelcomeFnc()` is called the variable `name` is assigned a different value, first `'Matthew'` and then `'Fred'`. Importantly, each time we call `getWelcomeFnc()` a new instance of the variable `name` is created i.e. we don't replace an existing value. The returned function has access to a specific instance of the variable `name`. This is `'Matthew'` for `welcomeMatthew()` and '`Fred'` for `welcomeFred()`. Here's a really common use case for closures.
 
 ### Closures - Associating data with dynamically generated elements
 
@@ -366,7 +366,7 @@ const stuList = document.querySelector("#stu-list"); //get hold of a <ul> elemen
 stuList.appendChild(studentsFragment);
 ```
 
-Now instead of attaching an event listener function directly we call `getShowMsgFnc` and pass the current student as an argument to this function. The returned function closes around this value so it can access the specific student when the list element is clicked.
+Now instead of attaching an event listener function directly we call `getShowMsgFnc()` and pass the current student as an argument to this function. The returned function closes around this value so it can access the specific student when the list element is clicked.
 
 ## Further Reading / References
 
